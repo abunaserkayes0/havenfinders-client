@@ -7,13 +7,17 @@ import Layout from "./components/ui/Layout.jsx";
 import ErrorElement from "./components/ui/ErrorElement.jsx";
 import LogIn from "./components/auth/LogIn.jsx";
 import Register from "./components/auth/Register.jsx";
+import Home from "./Pages/Home.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement: <ErrorElement />,
     children: [
+      {
+        index: true,
+        element: <Home />,
+      },
       {
         path: "/login",
         element: <LogIn />,
@@ -21,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "*",
+        element: <ErrorElement />,
       },
     ],
   },
