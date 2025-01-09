@@ -8,6 +8,7 @@ import ErrorElement from "./components/ui/ErrorElement.jsx";
 import LogIn from "./components/auth/LogIn.jsx";
 import Register from "./components/auth/Register.jsx";
 import Home from "./Pages/Home.jsx";
+import Add from "./components/touristspot/Add.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/addspot",
+        element: <Add />,
       },
       {
         path: "*",

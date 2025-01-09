@@ -64,8 +64,7 @@ export default function Carousel() {
         className="carousel-item relative w-full sm:px-3 md:px-3 "
       >
         <CarouseItem
-          title="The journey of a thousand miles starts with a single step, but
-              it's the footsteps that make the path."
+          title="The journey of a thousand miles starts with a single step, but it's the footsteps that make the path."
           paragraph="The journey of a thousand miles begins with a single step, but it
               is the footsteps that define the path. Each step we take, no
               matter how small or hesitant, contributes to the greater journey
