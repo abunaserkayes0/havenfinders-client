@@ -1,7 +1,7 @@
 import React from "react";
 import InputField from "../ui/InputField";
 import { Link } from "react-router-dom";
-import { Feather, Github } from "lucide-react";
+import { Feather } from "lucide-react";
 import { useForm } from "react-hook-form";
 
 export default function LogIn() {
