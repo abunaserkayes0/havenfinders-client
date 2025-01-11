@@ -3,14 +3,42 @@ import InputField from "../ui/InputField";
 import { Link } from "react-router-dom";
 import { Feather, Github } from "lucide-react";
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 export default function LogIn() {
+  const { signInUser } = useAuth();
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    const { email, password } = data;
+    signInUser(email, password)
+      .then((userCrd) => {
+        if (userCrd) {
+          Swal.fire({
+            title: "Good Jobs!",
+            text: "Sign In SuccessFully",
+            icon: "success",
+          });
+          reset();
+        }
+      })
+      .catch((error) => {
+        if (error.message) {
+          Swal.fire({
+            title: "Somethings Went Wrong!",
+            text: `${error.message}`,
+            icon: "error",
+          });
+        }
+      });
+  };
+
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col">
@@ -55,7 +83,9 @@ export default function LogIn() {
               </Link>
             </label>
             <div className="form-control mt-6">
-              <button className="btn bg-black text-white hover:text-black hover:bg-slate-200">Login</button>
+              <button className="btn bg-black text-white hover:text-black hover:bg-slate-200">
+                Login
+              </button>
             </div>
           </form>
           <div className="flex items-center justify-evenly gap-2 my-2">

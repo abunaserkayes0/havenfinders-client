@@ -14,6 +14,7 @@ import { url } from "../utils/fetchUrl.js";
 import Loading from "./components/ui/Loading.jsx";
 import AllTouristsSpots from "./components/tourists/AllTouristsSpots.jsx";
 import TouristDetails from "./components/tourists/TouristDetails.jsx";
+import AuthProvider from "./components/auth/AuthProvider.jsx";
 
 const router = createBrowserRouter([
   {
@@ -78,6 +79,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 );

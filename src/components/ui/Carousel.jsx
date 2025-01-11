@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 import CarouseItem from "./CarouseItem";
 export default function Carousel() {
   return (
-    <div className="carousel w-full">
+    <div className="carousel w-full min-h-screen">
       <div
         id="slide1"
         className="carousel-item relative w-full sm:px-3 md:px-3 "

@@ -28,7 +28,6 @@ export default function AllTouristsSpots() {
     try {
       const res = await fetch(`${url}/tourist?sortValue=${sortingValue}`);
       const result = await res.json();
-      console.log(result);
       setTouristSpots(result);
       setLoading(false);
     } catch (error) {

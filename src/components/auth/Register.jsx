@@ -1,15 +1,71 @@
-import React from "react";
+import React, { useContext } from "react";
 import InputField from "../ui/InputField";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { url } from "../../../utils/fetchUrl";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+import { updateProfile } from "firebase/auth";
+import auth from "../../Firebase/firebase.init";
 
 export default function Register() {
+  const { createUser, currentUser } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    const { email, name, password, photoUrl: photo } = data;
+
+    createUser(email, password).then((user) => {
+      const { displayName, photoUrl } = user.user;
+      updateProfile(auth.currentUser, {
+        displayName: name,
+        photoURL: photo,
+      }).then(async () => {
+        const { email, displayName, photoURL } = user.user;
+
+        const userInfo = {
+          email,
+          displayName,
+          photoURL,
+        };
+
+        try {
+          const res = await fetch(`${url}/users`, {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify(userInfo),
+          });
+          const result = await res.json();
+          if (result.insertedId) {
+            Swal.fire({
+              title: "Good job!",
+              text: "User inserted SuccessFully",
+              icon: "success",
+              timer: 1000,
+            });
+            currentUser();
+            reset();
+            navigate("/login");
+          }
+        } catch (error) {
+          if (error) {
+            Swal.fire({
+              title: "Sorry!",
+              text: `${error.message}`,
+              icon: "error",
+            });
+          }
+        }
+      });
+    });
+  };
 
   return (
     <div className="hero bg-base-200 min-h-screen">
