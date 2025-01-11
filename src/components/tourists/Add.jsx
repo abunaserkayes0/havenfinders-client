@@ -21,7 +21,7 @@ export default function Add() {
       shortDescription,
       spotName,
       totalVisitorsPerYear,
-      travelCost,
+      travelTime,
       userEmail,
       userName,
     } = data;
@@ -34,7 +34,7 @@ export default function Add() {
       shortDescription,
       spotName,
       totalVisitorsPerYear,
-      travelCost,
+      travelTime,
       userEmail,
       userName,
     };
@@ -182,17 +182,17 @@ export default function Add() {
               )}
 
               <InputField
-                inputName="TravelCost"
+                inputName="travelTime"
                 inputType="number"
-                placeholder="Enter Your TravelCost"
-                labelName="Travel Cost"
-                {...register("travelCost", {
+                placeholder="Enter Your travelTime"
+                labelName="Travel Time"
+                {...register("travelTime", {
                   required: "This field is required",
                 })}
               />
-              {errors.travelCost && (
+              {errors.travelTime && (
                 <span className="text-red-500">
-                  {errors.travelCost.message}
+                  {errors.travelTime.message}
                 </span>
               )}
               <InputField
