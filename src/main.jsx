@@ -2,19 +2,17 @@ import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./index.css";
-import App from "./App.jsx";
 import Layout from "./components/ui/Layout.jsx";
 import ErrorElement from "./components/ui/ErrorElement.jsx";
 import LogIn from "./components/auth/LogIn.jsx";
 import Register from "./components/auth/Register.jsx";
 import Home from "./Pages/Home.jsx";
 import Add from "./components/tourists/Add.jsx";
-import TouristsSpots from "./components/tourists/TouristsSpots.jsx";
 import { url } from "../utils/fetchUrl.js";
-import Loading from "./components/ui/Loading.jsx";
 import AllTouristsSpots from "./components/tourists/AllTouristsSpots.jsx";
 import TouristDetails from "./components/tourists/TouristDetails.jsx";
 import AuthProvider from "./components/auth/AuthProvider.jsx";
+import PrivetRoute from "./components/auth/PrivetRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -43,11 +41,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/addspot",
-        element: <Add />,
+        element: (
+          <PrivetRoute>
+            <Add />
+          </PrivetRoute>
+        ),
       },
       {
         path: "/allspots",
-        element: <AllTouristsSpots />,
+        element: (
+          <PrivetRoute>
+            <AllTouristsSpots />
+          </PrivetRoute>
+        ),
         loader: async () => {
           try {
             const response = await fetch(`${url}/tourist`);
@@ -59,7 +65,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/tourist/:id",
-        element: <TouristDetails />,
+        element: (
+          <PrivetRoute>
+            <TouristDetails />
+          </PrivetRoute>
+        ),
         loader: async ({ params: { id } }) => {
           try {
             const response = await fetch(`${url}/tourist/${id}`);

@@ -1,13 +1,15 @@
 import React from "react";
 import InputField from "../ui/InputField";
-import { Link } from "react-router-dom";
-import { Feather, Github } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import SocialMedia from "./SocialMedia";
 
 export default function LogIn() {
   const { signInUser } = useAuth();
+  const { state } = useLocation();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -25,6 +27,7 @@ export default function LogIn() {
             text: "Sign In SuccessFully",
             icon: "success",
           });
+          navigate(state || "/");
           reset();
         }
       })
@@ -45,7 +48,7 @@ export default function LogIn() {
         <div className="text-center">
           <h1 className="text-3xl font-bold">Login</h1>
         </div>
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl p-5">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <InputField
               inputName="email"
@@ -83,19 +86,12 @@ export default function LogIn() {
               </Link>
             </label>
             <div className="form-control mt-6">
-              <button className="btn bg-black text-white hover:text-black hover:bg-slate-200">
+              <button className="btn bg-black text-xl text-white hover:text-black hover:bg-slate-200">
                 Login
               </button>
             </div>
           </form>
-          <div className="flex items-center justify-evenly gap-2 my-2">
-            <button className="bg-black flex items-center rounded text-white px-5 py-2 gap-2">
-              Google <Feather size={15} />
-            </button>
-            <button className="bg-black flex items-center rounded text-white px-5 py-2 gap-2">
-              Github <Github size={15} />
-            </button>
-          </div>
+          <SocialMedia />
         </div>
       </div>
     </div>

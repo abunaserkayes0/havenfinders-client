@@ -38,15 +38,19 @@ export default function NavBar() {
             <li>
               <Link to="/">Home</Link>
             </li>
-            <li>
-              <Link to="/allspots">All Tourist Spots</Link>
-            </li>
-            <li>
-              <Link to="/addspot">Add Tourist Spot</Link>
-            </li>
-            <li>
-              <Link to="/myList">My List</Link>
-            </li>
+            {user && (
+              <>
+                <li>
+                  <Link to="/allspots">All Tourist Spots</Link>
+                </li>
+                <li>
+                  <Link to="/addspot">Add Tourist Spot</Link>
+                </li>
+                <li>
+                  <Link to="/myList">My List</Link>
+                </li>
+              </>
+            )}
             <li>
               <Link to="/register">Register</Link>
             </li>
@@ -65,15 +69,19 @@ export default function NavBar() {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
-            <Link to="/allspots">All Tourist Spots</Link>
-          </li>
-          <li>
-            <Link to="/addspot">Add Tourist Spot</Link>
-          </li>
-          <li>
-            <Link to="/myList">My List</Link>
-          </li>
+          {user && (
+            <>
+              <li>
+                <Link to="/allspots">All Tourist Spots</Link>
+              </li>
+              <li>
+                <Link to="/addspot">Add Tourist Spot</Link>
+              </li>
+              <li>
+                <Link to="/myList">My List</Link>
+              </li>
+            </>
+          )}
           <li>
             <Link to="/register">Register</Link>
           </li>
@@ -89,7 +97,7 @@ export default function NavBar() {
                 <div className="w-10 rounded-full">
                   <img
                     alt="Tailwind CSS Navbar component"
-                    src={user.photoURL}
+                    src={user?.photoURL}
                   />
                 </div>
               </div>
@@ -97,6 +105,7 @@ export default function NavBar() {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
               >
+                <li className="mx-3">{user?.displayName}</li>
                 <li>
                   <Link onClick={logOut} to="/login">
                     Logout

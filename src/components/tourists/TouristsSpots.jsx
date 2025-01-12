@@ -25,9 +25,9 @@ export default function TouristsSpots() {
   if (touristSpotsSlice.length > 0) {
     content = (
       <div className="mx-10">
-        <div className="text-center my-5">
-          <h2 className="text-3xl font-bold">
-            Tourists <span className="text-slate-600">Spots</span> Section
+        <div className="text-center my-20">
+          <h2 className="text-4xl font-black">
+            Tourists <span className="text-black">Spots</span> Section
           </h2>
           <p className="text-xl italic">
             If you want to go fast, go alone. If you want to go far, go together

@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { AuthContext } from "../../../utils/AuthContext";
 import {
   createUserWithEmailAndPassword,
+  GithubAuthProvider,
+  GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import auth from "../../Firebase/firebase.init";
@@ -11,6 +14,9 @@ import Loading from "../ui/Loading";
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
   const createUser = async (email, password) => {
     setLoading(true);
@@ -42,6 +48,14 @@ export default function AuthProvider({ children }) {
     }
   };
 
+  const signInWithGoogle = async () => {
+    return signInWithPopup(auth, googleProvider);
+  };
+
+  const signInWithGithub = async () => {
+    return signInWithPopup(auth, githubProvider);
+  };
+
   useEffect(() => {
     const unSubtribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -70,6 +84,8 @@ export default function AuthProvider({ children }) {
   const userInfo = {
     createUser,
     signInUser,
+    signInWithGoogle,
+    signInWithGithub,
     logOut,
     loading,
     user,
