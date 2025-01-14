@@ -2,12 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Loading from "./Loading";
+import { MoonStar, SunMoon } from "lucide-react";
 
 export default function NavBar() {
-  const { user, loading, logOut } = useAuth();
+  const { user, loading, logOut, handelToggleColor, color } = useAuth();
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar">
       <div className="navbar-start">
         <Link to="/" className="text-xl font-black">
           HavenFinders
@@ -33,57 +34,104 @@ export default function NavBar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm w-52 dropdown-content bg-base-100 font-bold rounded-box z-[1] mt-3 p-2 shadow"
+            className={`menu menu-sm w-52 dropdown-content bg-base-100 font-bold rounded-box z-[1] mt-3 p-2 shadow  ${
+              color && "bg-black text-white"
+            }`}
           >
             <li>
-              <Link to="/">Home</Link>
+              <Link className={` hover:bg-white hover:text-black`} to="/">
+                HomephotoURL
+              </Link>
             </li>
             {user && (
               <>
                 <li>
-                  <Link to="/allspots">All Tourist Spots</Link>
+                  <Link
+                    className={` hover:bg-white hover:text-black`}
+                    to="/allspots"
+                  >
+                    All Tourist Spots
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/addspot">Add Tourist Spot</Link>
+                  <Link
+                    className={` hover:bg-white hover:text-black`}
+                    to="/addspot"
+                  >photoURL
+                    Add Tourist Spot
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/myList">My List</Link>
+                  <Link
+                    className={` hover:bg-white hover:text-black`}
+                    to={`/mylist/${user.email}`}
+                  >
+                    My List
+                  </Link>
                 </li>
               </>
             )}
             <li>
-              <Link to="/register">Register</Link>
+              <Link
+                className={` hover:bg-white hover:text-black`}
+                to="/register"
+              >
+                Register
+              </Link>
             </li>
             {user ? (
               <li>
-                <Link to="/login">Logout</Link>
+                <Link
+                  className={` hover:bg-white hover:text-black`}
+                  to="/login"
+                >
+                  Logout
+                </Link>
               </li>
             ) : (
               <li>
-                <Link to="/login">Login</Link>
+                <Link
+                  className={` hover:bg-white hover:text-black`}
+                  to="/login"
+                >
+                  Login
+                </Link>
               </li>
             )}
           </ul>
         </div>
         <ul className="menu menu-horizontal flex-nowrap hidden font-bold text-sm lg:flex lg:mx-32">
           <li>
-            <Link to="/">Home</Link>
+            <Link className="focus:text-blue-600" to="/">
+              Home
+            </Link>
           </li>
           {user && (
             <>
               <li>
-                <Link to="/allspots">All Tourist Spots</Link>
+                <Link className="focus:text-blue-600" to="/allspots">
+                  All Tourist Spots
+                </Link>
               </li>
               <li>
-                <Link to="/addspot">Add Tourist Spot</Link>
+                <Link className="focus:text-blue-600" to="/addspot">
+                  Add Tourist Spot
+                </Link>
               </li>
               <li>
-                <Link to="/myList">My List</Link>
+                <Link
+                  className="focus:text-blue-600"
+                  to={`/mylist/${user.email}`}
+                >
+                  My List
+                </Link>
               </li>
             </>
           )}
           <li>
-            <Link to="/register">Register</Link>
+            <Link className="focus:text-blue-600" to="/register">
+              Register
+            </Link>
           </li>
           {loading ? (
             <Loading />
@@ -103,11 +151,17 @@ export default function NavBar() {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                className={`menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow ${
+                  color && "bg-black text-white"
+                }`}
               >
                 <li className="mx-3">{user?.displayName}</li>
                 <li>
-                  <Link onClick={logOut} to="/login">
+                  <Link
+                    onClick={logOut}
+                    className={`focus:text-blue-600 hover:bg-white hover:text-black `}
+                    to="/login"
+                  >
                     Logout
                   </Link>
                 </li>
@@ -115,9 +169,14 @@ export default function NavBar() {
             </div>
           ) : (
             <li>
-              <Link to="/login">Login</Link>
+              <Link className="focus:text-blue-600" to="/login">
+                Login
+              </Link>
             </li>
           )}
+          <button onClick={handelToggleColor} className="px-3">
+            {color ? <SunMoon /> : <MoonStar />}
+          </button>
         </ul>
       </div>
     </div>

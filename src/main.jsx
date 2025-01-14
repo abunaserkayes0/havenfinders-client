@@ -13,6 +13,8 @@ import AllTouristsSpots from "./components/tourists/AllTouristsSpots.jsx";
 import TouristDetails from "./components/tourists/TouristDetails.jsx";
 import AuthProvider from "./components/auth/AuthProvider.jsx";
 import PrivetRoute from "./components/auth/PrivetRoute.jsx";
+import MyList from "./components/tourists/MyList.jsx";
+import UpdateCard from "./components/ui/UpdateCard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +78,38 @@ const router = createBrowserRouter([
             return response;
           } catch (error) {
             throw new Response("Error Loading tourist spot", { status: 500 });
+          }
+        },
+      },
+      {
+        path: "/mylist/:email",
+        element: (
+          <PrivetRoute>
+            <MyList />
+          </PrivetRoute>
+        ),
+        loader: async ({ params: { email } }) => {
+          try {
+            const response = await fetch(`${url}/users/${email}`);
+            return response;
+          } catch (error) {
+            throw new Response("Error Loading users spot", { status: 500 });
+          }
+        },
+      },
+      {
+        path: "/update/:id",
+        element: (
+          <PrivetRoute>
+            <UpdateCard />
+          </PrivetRoute>
+        ),
+        loader: async ({ params: { id } }) => {
+          try {
+            const response = await fetch(`${url}/tourist/${id}`);
+            return response;
+          } catch (error) {
+            throw new Response("Error Loading users spot", { status: 500 });
           }
         },
       },

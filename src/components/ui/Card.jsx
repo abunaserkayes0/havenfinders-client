@@ -18,7 +18,7 @@ export default function Card({ allTouristsSpot }) {
   } = allTouristsSpot || {};
 
   return (
-    <div className="card bg-base-100 shadow-xl">
+    <div className="card shadow-xl">
       <figure>
         <img
           src={imageUrl}

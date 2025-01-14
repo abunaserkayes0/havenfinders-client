@@ -3,10 +3,12 @@ import NavBar from "./NavBar";
 import Footer from "./Footer";
 import { Outlet, useNavigate } from "react-router-dom";
 import Loading from "./Loading";
+import useAuth from "../../hooks/useAuth";
 
 export default function Layout() {
   const [loading, setLoading] = useState(false);
   const navigation = useNavigate();
+  const { color } = useAuth();
 
   useEffect(() => {
     if (navigation.state === "loading") {
@@ -17,7 +19,7 @@ export default function Layout() {
   }, []);
 
   return (
-    <div className="mx-5">
+    <div className={`mx-5 ${color && "bg-black text-white mx-0"} `}>
       <NavBar />
       {loading ? <Loading /> : <Outlet />}
       <Footer />

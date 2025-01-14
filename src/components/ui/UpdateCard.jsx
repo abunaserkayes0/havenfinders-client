@@ -4,17 +4,42 @@ import InputField from "../ui/InputField";
 import { url } from "../../../utils/fetchUrl";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
-export default function Add() {
-  const { user, color } = useAuth();
+export default function UpdateCard() {
+  const { user } = useAuth();
+  const data = useLoaderData();
   const navigate = useNavigate();
   const {
+    _id,
+    averageCost,
+    countryName,
+    imageUrl,
+    location,
+    seasonality,
+    shortDescription,
+    spotName,
+    totalVisitorsPerYear,
+    travelTime,
+  } = data || {};
+
+  const {
     register,
-    reset,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      averageCost,
+      countryName,
+      imageUrl,
+      location,
+      seasonality,
+      shortDescription,
+      spotName,
+      totalVisitorsPerYear,
+      travelTime,
+    },
+  });
   const onSubmit = (data) => {
     const {
       averageCost,
@@ -29,7 +54,8 @@ export default function Add() {
       userEmail,
       userName,
     } = data;
-    const newData = {
+
+    const updateSpot = {
       averageCost,
       countryName,
       imageUrl,
@@ -43,53 +69,42 @@ export default function Add() {
       userName,
     };
 
-    fetch(`${url}/tourist`, {
-      method: "POST",
+    fetch(`${url}/tourist/${_id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newData),
+      body: JSON.stringify(updateSpot),
     })
-      .then((res) => {
-        if (res.status === 200) {
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.modifiedCount > 0) {
           Swal.fire({
-            title: "Data inserted successful",
-            showConfirmButton: false,
+            title: "Data Update SuccessFully",
             icon: "success",
+            showConfirmButton:false,
             timer: 1000,
           });
-          reset();
           navigate(`/mylist/${user?.email}`);
         }
       })
       .catch((error) => {
         if (error) {
           Swal.fire({
+            title: "Something Went w",
             icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
-            showConfirmButton: false,
             timer: 1000,
           });
         }
       });
   };
-
   return (
-    <div
-      className={`flex hero bg-base-200 min-h-screen ${
-        color && "bg-black text-black"
-      }`}
-    >
+    <div className="hero bg-base-200 min-h-screen flex">
       <div className="hero-content flex-col w-full max-w-4xl mx-auto">
         <div className="text-center mb-4">
-          <h1 className="text-3xl font-bold">Add Tourist Spots</h1>
+          <h1 className="text-3xl font-bold">Update Tourist Spots</h1>
         </div>
-        <div
-          className={`card bg-base-100 w-full shadow-2xl ${
-            color && "bg-black text-black"
-          }`}
-        >
+        <div className="card bg-base-100 w-full shadow-2xl">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="card-body grid gap-6 sm:grid-cols-1 md:grid-cols-2"
@@ -104,6 +119,7 @@ export default function Add() {
                 {...register("imageUrl", {
                   required: "This field is required",
                 })}
+                defaultValue={imageUrl}
               />
               {errors.imageUrl && (
                 <span className="text-red-500">{errors.imageUrl.message}</span>
@@ -116,6 +132,7 @@ export default function Add() {
                 {...register("spotName", {
                   required: "This field is required",
                 })}
+                defaultValue={spotName}
               />
               {errors.spotName && (
                 <span className="text-red-500">{errors.spotName.message}</span>
@@ -128,6 +145,7 @@ export default function Add() {
                 {...register("countryName", {
                   required: "This field is required",
                 })}
+                defaultValue={countryName}
               />
               {errors.countryName && (
                 <span className="text-red-500">
@@ -142,6 +160,7 @@ export default function Add() {
                 {...register("location", {
                   required: "This field is required",
                 })}
+                defaultValue={location}
               />
               {errors.location && (
                 <span className="text-red-500">{errors.location.message}</span>
@@ -154,6 +173,7 @@ export default function Add() {
                 {...register("shortDescription", {
                   required: "This field is required",
                 })}
+                defaultValue={shortDescription}
               />
               {errors.shortDescription && (
                 <span className="text-red-500">
@@ -169,6 +189,7 @@ export default function Add() {
                 {...register("averageCost", {
                   required: "This field is required",
                 })}
+                defaultValue={averageCost}
               />
               {errors.averageCost && (
                 <span className="text-red-500">
@@ -178,16 +199,15 @@ export default function Add() {
             </div>
 
             {/* Column 2 */}
-            <div className={`${color && "text-white"}`}>
+            <div>
               <label htmlFor="seasonality">Seasonality</label>
               <select
                 id="seasonality"
                 {...register("seasonality", {
                   required: "This field is required",
                 })}
-                className={`border rounded px-3 py-2 w-full ${
-                  color && "text-black"
-                }`}
+                defaultValue={seasonality}
+                className="border rounded px-3 py-2 w-full"
               >
                 <option value="winter">Winter</option>
                 <option value="summer">Summer</option>
@@ -206,6 +226,7 @@ export default function Add() {
                 {...register("travelTime", {
                   required: "This field is required",
                 })}
+                defaultValue={travelTime}
               />
               {errors.travelTime && (
                 <span className="text-red-500">
@@ -220,6 +241,7 @@ export default function Add() {
                 {...register("totalVisitorsPerYear", {
                   required: "This field is required",
                 })}
+                defaultValue={totalVisitorsPerYear}
               />
               {errors.totalVisitorsPerYear && (
                 <span className="text-red-500">
@@ -231,7 +253,7 @@ export default function Add() {
                 inputType="email"
                 placeholder="Enter Your userEmail"
                 labelName="User Email"
-                value={user?.email}
+                defaultValue={user?.email}
                 disabled
                 {...register("userEmail", {
                   required: "This field is required",
@@ -245,7 +267,7 @@ export default function Add() {
                 inputType="text"
                 placeholder="Enter Your userName"
                 labelName="User Name"
-                value={user?.displayName}
+                defaultValue={user?.displayName}
                 disabled
                 {...register("userName", {
                   required: "This field is required",
@@ -259,7 +281,7 @@ export default function Add() {
             {/* Submit Button */}
             <div className="form-control mt-6 sm:col-span-1 md:col-span-2">
               <button className="btn bg-black text-white hover:text-black hover:bg-slate-200">
-                Add
+                Update
               </button>
             </div>
           </form>

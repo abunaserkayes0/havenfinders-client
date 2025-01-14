@@ -4,9 +4,11 @@ import Loading from "../ui/Loading";
 import CardItem from "../ui/CardItem";
 import { useForm } from "react-hook-form";
 import { url } from "../../../utils/fetchUrl";
+import useAuth from "../../hooks/useAuth";
 
 export default function AllTouristsSpots() {
   const allTouristsSpots = useLoaderData();
+  const { color } = useAuth();
   const [loading, setLoading] = useState(true);
   const [touristSpots, setTouristSpots] = useState(allTouristsSpots);
   const {
@@ -73,7 +75,7 @@ export default function AllTouristsSpots() {
           {...register("sorting", {
             onChange: handleOnchange,
           })}
-          className="border rounded px-3 py-2"
+          className={`border rounded px-3 py-2 ${color && "bg-black"}`}
         >
           <option value="asc">ascOrder</option>
           <option value="dsc">dscOrder</option>

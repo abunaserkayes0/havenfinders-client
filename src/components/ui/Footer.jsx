@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="footer footer-center text-base-content rounded p-10">
+    <footer className="footer footer-center rounded p-10">
       <nav className="flex flex-col sm:flex-row flex-wrap">
         <Link className="link link-hover" to="/">
           Home

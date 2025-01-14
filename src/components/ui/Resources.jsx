@@ -6,9 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 
-
 // import required modules
-import { Pagination,Autoplay } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import Resource from "./Resource";
 
 export default function Resources() {
@@ -23,37 +22,69 @@ export default function Resources() {
         slidesPerView={3}
         spaceBetween={30}
         autoplay={{
-          delay:2000
+          delay: 2000,
         }}
         pagination={{
           clickable: true,
         }}
-        modules={[Pagination,Autoplay]}
+        modules={[Pagination, Autoplay]}
         className="mySwiper"
       >
         <SwiperSlide>
-          <Resource image="https://res.cloudinary.com/dhjkntuy2/image/upload/v1736706057/Resources/pexels-js-moon-605472244-17336171_ye4aii.jpg" />
+          <Resource
+            title="Belize"
+            description="Known for its barrier reef and Mayan ruins."
+            image="https://res.cloudinary.com/dhjkntuy2/image/upload/v1736706057/Resources/pexels-js-moon-605472244-17336171_ye4aii.jpg"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <Resource image="https://res.cloudinary.com/dhjkntuy2/image/upload/v1736706057/Resources/pexels-js-moon-605472244-17336176_p5kdpj.jpg" />
+          <Resource
+            title="Costa Rica"
+            description="Famous for eco-tourism and biodiversity."
+            image="https://res.cloudinary.com/dhjkntuy2/image/upload/v1736706057/Resources/pexels-js-moon-605472244-17336176_p5kdpj.jpg"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <Resource image="https://res.cloudinary.com/dhjkntuy2/image/upload/v1736706057/Resources/pexels-monika-balciuniene-1144471-18926047_hn0ka9.jpg" />
+          <Resource
+            title="El Salvador"
+            description="Known for its surfing spots and volcanic landscapes."
+            image="https://res.cloudinary.com/dhjkntuy2/image/upload/v1736706057/Resources/pexels-monika-balciuniene-1144471-18926047_hn0ka9.jpg"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <Resource image="https://res.cloudinary.com/dhjkntuy2/image/upload/v1736706056/Resources/pexels-azizico-27137595_gz26uw.jpg" />
+          <Resource
+            title="Guatemala"
+            description="Rich in Mayan heritage and cultural traditions."
+            image="https://res.cloudinary.com/dhjkntuy2/image/upload/v1736706056/Resources/pexels-azizico-27137595_gz26uw.jpg"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <Resource image="https://res.cloudinary.com/dhjkntuy2/image/upload/v1736706057/Resources/pexels-geladelrosario-4447105_bbkqd5.jpg" />
+          <Resource
+            title="Honduras"
+            description="Known for coral reefs and archaeological sites like Copán."
+            image="https://res.cloudinary.com/dhjkntuy2/image/upload/v1736706057/Resources/pexels-geladelrosario-4447105_bbkqd5.jpg"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <Resource image="https://res.cloudinary.com/dhjkntuy2/image/upload/v1736706057/Resources/pexels-i-smail-altin-1722033-28406651_t15t4g.jpg" />
+          <Resource
+            title="Nicaragua"
+            description="Home to stunning lakes and volcanoes."
+            image="https://res.cloudinary.com/dhjkntuy2/image/upload/v1736706057/Resources/pexels-i-smail-altin-1722033-28406651_t15t4g.jpg"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <Resource image="https://res.cloudinary.com/dhjkntuy2/image/upload/v1736706056/Resources/pexels-annalise-tingler-362152355-14632449_wwzwup.jpg" />
+          <Resource
+            title="Panama"
+            description="Famous for the Panama Canal and tropical rainforests."
+            image="https://res.cloudinary.com/dhjkntuy2/image/upload/v1736706056/Resources/pexels-annalise-tingler-362152355-14632449_wwzwup.jpg"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <Resource image="https://res.cloudinary.com/dhjkntuy2/image/upload/v1736706056/Resources/pexels-adriana-coulson-1070894176-21336456_k4tatl.jpg" />
+          <Resource
+            title="Bahamas"
+            description="Known for clear waters and luxury resorts."
+            image="https://res.cloudinary.com/dhjkntuy2/image/upload/v1736706056/Resources/pexels-adriana-coulson-1070894176-21336456_k4tatl.jpg"
+          />
         </SwiperSlide>
       </Swiper>
     </>

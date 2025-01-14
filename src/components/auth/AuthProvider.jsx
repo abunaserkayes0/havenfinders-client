@@ -14,6 +14,7 @@ import Loading from "../ui/Loading";
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [color, setColor] = useState(false);
 
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
@@ -81,11 +82,18 @@ export default function AuthProvider({ children }) {
     return <Loading />;
   }
 
+  const handelToggleColor = () => {
+    setColor(!color);
+  };
+
   const userInfo = {
     createUser,
     signInUser,
     signInWithGoogle,
     signInWithGithub,
+    handelToggleColor,
+    color,
+    setColor,
     logOut,
     loading,
     user,

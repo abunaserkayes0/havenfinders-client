@@ -1,8 +1,10 @@
 import React from "react";
+import useAuth from "../../hooks/useAuth";
 
 export default function SwiperCarousel({ image, name, rating, review }) {
+  const {color} = useAuth()
   return (
-    <div className="card bg-white lg:card-normal shadow-inner p-10">
+    <div className={`card lg:card-normal bg-white shadow-inner p-10 ${color && "bg-[#0D0D0C]"}`}>
       <figure className="mb-5">
         <img
           src={image}

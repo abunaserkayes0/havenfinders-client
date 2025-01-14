@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import SocialMedia from "./SocialMedia";
 
 export default function LogIn() {
-  const { signInUser } = useAuth();
+  const { signInUser, color } = useAuth();
   const { state } = useLocation();
   const navigate = useNavigate();
 
@@ -43,12 +43,24 @@ export default function LogIn() {
   };
 
   return (
-    <div className="hero bg-base-200 min-h-screen">
+    <div
+      className={`hero bg-base-200 min-h-screen ${
+        color && "bg-black text-black"
+      }`}
+    >
       <div className="hero-content flex-col">
         <div className="text-center">
-          <h1 className="text-3xl font-bold">Login</h1>
+          <h1
+            className={`text-3xl font-bold ${color && "bg-black text-white"}`}
+          >
+            Login
+          </h1>
         </div>
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl p-5">
+        <div
+          className={`card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl p-5 ${
+            color && "bg-black"
+          }`}
+        >
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <InputField
               inputName="email"
@@ -81,7 +93,12 @@ export default function LogIn() {
               <span className="text-red-500">{errors.password.message}</span>
             )}
             <label className="label">
-              <Link to="/register" className="label-text-alt link link-hover">
+              <Link
+                to="/register"
+                className={`label-text-alt link link-hover  ${
+                  color && "text-white"
+                }`}
+              >
                 Register Now?
               </Link>
             </label>

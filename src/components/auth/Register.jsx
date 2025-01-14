@@ -9,7 +9,7 @@ import { updateProfile } from "firebase/auth";
 import auth from "../../Firebase/firebase.init";
 
 export default function Register() {
-  const { createUser, currentUser } = useAuth();
+  const { createUser, currentUser,color } = useAuth();
   const navigate = useNavigate();
   const {
     register,
@@ -68,12 +68,12 @@ export default function Register() {
   };
 
   return (
-    <div className="hero bg-base-200 min-h-screen">
+    <div className={`hero bg-base-200 min-h-screen  ${color && "bg-black text-black"}`}>
       <div className="hero-content flex-col">
         <div className="text-center">
-          <h1 className="text-3xl font-bold">Register</h1>
+          <h1 className={`text-3xl font-bold  ${color && "bg-black text-white"}`}>Register</h1>
         </div>
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+        <div className={`card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl ${color && "bg-black text-black"}`}>
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <InputField
               inputName="name"
@@ -126,8 +126,8 @@ export default function Register() {
               <span className="text-red-500">{errors.password.message}</span>
             )}
             <label className="label">
-              <Link to="/login" className="label-text-alt link link-hover">
-                Do you want to log in here?
+              <Link to="/login" className={`label-text-alt link link-hover ${color && "text-white"}`}>
+                Do you want to log?
               </Link>
             </label>
             <div className="form-control mt-6">

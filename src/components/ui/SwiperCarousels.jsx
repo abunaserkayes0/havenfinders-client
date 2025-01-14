@@ -4,13 +4,15 @@ import "swiper/css";
 import "swiper/css/effect-cards";
 import { EffectCards, Autoplay } from "swiper/modules";
 import SwiperCarousel from "./SwiperCarousel";
+import useAuth from "../../hooks/useAuth";
 
 export default function SwiperCarousels() {
+  const {color} = useAuth()
   return (
     <>
       <div className="text-center my-5">
         <h2 className="text-4xl font-black my-20">
-          Our <span className="text-black">Clients</span> Reviews
+          Our <span className={`${color && "text-white"} text-black`}>Clients</span> Reviews
         </h2>
       </div>
       <Swiper
