@@ -1,1 +1,1 @@
-export const url = "https://havenfinders-server-hzqta4yb1-abunaserkayes0s-projects.vercel.app";
+export const url = "https://havenfinders-server.vercel.app";
