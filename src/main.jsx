@@ -9,7 +9,6 @@ import LogIn from "./components/auth/LogIn.jsx";
 import Register from "./components/auth/Register.jsx";
 import Home from "./Pages/Home.jsx";
 import Add from "./components/tourists/Add.jsx";
-import { url } from "./utils/fetchUrl.js";
 import AllTouristsSpots from "./components/tourists/AllTouristsSpots.jsx";
 import TouristDetails from "./components/tourists/TouristDetails.jsx";
 import AuthProvider from "./components/auth/AuthProvider.jsx";
@@ -17,6 +16,7 @@ import PrivetRoute from "./components/auth/PrivetRoute.jsx";
 import MyList from "./components/tourists/MyList.jsx";
 import UpdateCard from "./components/ui/UpdateCard.jsx";
 import Loading from "./components/ui/Loading.jsx";
+import { url } from "../utils/fetchUrl.js";
 
 const router = createBrowserRouter([
   {
