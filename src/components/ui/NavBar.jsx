@@ -40,7 +40,7 @@ export default function NavBar() {
           >
             <li>
               <Link className={` hover:bg-white hover:text-black`} to="/">
-                HomephotoURL
+                Home
               </Link>
             </li>
             {user && (
