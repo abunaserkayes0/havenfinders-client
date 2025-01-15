@@ -10,6 +10,7 @@ export default function CardItem({ allTouristsSpot }) {
     totalVisitorsPerYear,
     travelTime,
     seasonality,
+    userEmail
   } = allTouristsSpot || {};
 
   return (
@@ -32,6 +33,9 @@ export default function CardItem({ allTouristsSpot }) {
         </p>
         <p>
           <strong>TravelTime :</strong> {travelTime || "Not available"}
+        </p>
+        <p>
+          <strong>User :</strong> {userEmail || "Not available"}
         </p>
         <p>
           <strong>seasonality:</strong> {seasonality || "Not available"}

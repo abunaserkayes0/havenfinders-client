@@ -15,6 +15,7 @@ import AuthProvider from "./components/auth/AuthProvider.jsx";
 import PrivetRoute from "./components/auth/PrivetRoute.jsx";
 import MyList from "./components/tourists/MyList.jsx";
 import UpdateCard from "./components/ui/UpdateCard.jsx";
+import Loading from "./components/ui/Loading.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,10 +25,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
-        loader: () =>
-          fetch(`${url}/tourist`)
-            .then((res) => res.json())
-            .catch((err) => console.error(err)),
+        loader: () => fetch(`${url}/tourist`),
       },
       {
         path: "/login",
@@ -52,10 +50,7 @@ const router = createBrowserRouter([
             <AllTouristsSpots />
           </PrivetRoute>
         ),
-        loader: () =>
-          fetch(`${url}/tourist`)
-            .then((res) => res.json())
-            .catch((err) => console.error(err)),
+        loader: () => fetch(`${url}/tourist`),
       },
       {
         path: "/tourist/:id",
@@ -64,10 +59,7 @@ const router = createBrowserRouter([
             <TouristDetails />
           </PrivetRoute>
         ),
-        loader: ({ params: { id } }) =>
-          fetch(`${url}/tourist/${id}`)
-            .then((res) => res.json())
-            .catch((err) => console.error(err)),
+        loader: ({ params: { id } }) => fetch(`${url}/tourist/${id}`),
       },
       {
         path: "/mylist/:email",
@@ -76,12 +68,7 @@ const router = createBrowserRouter([
             <MyList />
           </PrivetRoute>
         ),
-        loader: ({ params: { email } }) =>
-          fetch(
-            `${url}/users/${email}`
-              .then((res) => res.json())
-              .catch((err) => console.error(err))
-          ),
+        loader: ({ params: { email } }) => fetch(`${url}/users/${email}`),
       },
       {
         path: "/update/:id",
@@ -90,12 +77,7 @@ const router = createBrowserRouter([
             <UpdateCard />
           </PrivetRoute>
         ),
-        loader: ({ params: { id } }) =>
-          fetch(
-            `${url}/tourist/${id}`
-              .then((res) => res.json())
-              .catch((err) => console.error(err))
-          ),
+        loader: ({ params: { id } }) => fetch(`${url}/tourist/${id}`),
       },
       {
         path: "*",
@@ -108,7 +90,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <Suspense fallback={<Loading />}>
+        <RouterProvider router={router} />
+      </Suspense>
     </AuthProvider>
   </StrictMode>
 );
