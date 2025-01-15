@@ -17,7 +17,6 @@ export default function SocialMedia() {
             title: "Sign In Successfully",
             icon: "success",
             showConfirmButton: false,
-            timer: 1000,
           });
           navigate(state);
         }
@@ -28,7 +27,6 @@ export default function SocialMedia() {
             title: "Sign In Successfully",
             icon: "error",
             showConfirmButton: false,
-            timer: 1000,
           });
         }
       });
