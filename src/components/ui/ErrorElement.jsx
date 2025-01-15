@@ -1,5 +1,5 @@
 import React from "react";
-import notFound from "/404.avif";
+import notFound from "/404.jpg";
 import { Link } from "react-router-dom";
 export default function ErrorElement() {
   return (
