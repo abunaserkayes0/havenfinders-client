@@ -6,9 +6,9 @@ export default function SwiperCarousel({ image, name, rating, review }) {
 
   return (
     <div
-      className={`bg-white text-black card lg:card-normal shadow-inner p-10 ${
-        color && "bg-[#0f0f0f] text-white"
-      }`}
+      className={`${
+        color ? "bg-[#0e0e0e] text-white" : "bg-white text-black"
+      } card lg:card-normal shadow-inner p-10`}
     >
       <figure className="mb-5">
         <img
