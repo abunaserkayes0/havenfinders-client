@@ -12,23 +12,25 @@ export default function SocialMedia() {
   const handelSocialMedia = (socialProvider) => {
     socialProvider()
       .then((result) => {
-        if (result.user) {
-          Swal.fire({
-            title: "Sign In Successfully",
-            icon: "success",
-            showConfirmButton: false,
-          });
+        const { email } = result?.user;
+        if (email) {
           navigate(state);
         }
+        // if (result.user) {
+        //   Swal.fire({
+        //     title: "Sign In Successfully",
+        //     icon: "success",
+        //     showConfirmButton: false,
+        //   });
+        //   navigate(state);
+        // }
       })
       .catch((error) => {
-        if (error) {
-          Swal.fire({
-            title: "Sign In Successfully",
-            icon: "error",
-            showConfirmButton: false,
-          });
-        }
+        Swal.fire({
+          title: "Sign In Successfully",
+          icon: "error",
+          showConfirmButton: false,
+        });
       });
   };
 
