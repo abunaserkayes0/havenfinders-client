@@ -26,6 +26,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+        errorElement:<ErrorElement/>,
         loader: () => fetch(`${url}/tourist`),
       },
       {
@@ -51,6 +52,7 @@ const router = createBrowserRouter([
             <AllTouristsSpots />
           </PrivetRoute>
         ),
+        errorElement:<ErrorElement/>,
         loader: () => fetch(`${url}/tourist`),
       },
       {
@@ -60,6 +62,7 @@ const router = createBrowserRouter([
             <TouristDetails />
           </PrivetRoute>
         ),
+        errorElement:<ErrorElement/>,
         loader: ({ params: { id } }) => fetch(`${url}/tourist/${id}`),
       },
       {
@@ -69,6 +72,7 @@ const router = createBrowserRouter([
             <MyList />
           </PrivetRoute>
         ),
+        errorElement:<ErrorElement/>,
         loader: ({ params: { email } }) => fetch(`${url}/users/${email}`),
       },
       {
@@ -78,6 +82,7 @@ const router = createBrowserRouter([
             <UpdateCard />
           </PrivetRoute>
         ),
+        errorElement:<ErrorElement/>,
         loader: ({ params: { id } }) => fetch(`${url}/tourist/${id}`),
       },
       {
