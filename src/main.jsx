@@ -27,7 +27,7 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
         errorElement:<ErrorElement/>,
-        loader: () => fetch(`${url}/tourist`),
+        loader: () => fetch(`https://havenfinders-server-hzqta4yb1-abunaserkayes0s-projects.vercel.app/tourist`),
       },
       {
         path: "/login",
