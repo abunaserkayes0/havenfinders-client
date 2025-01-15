@@ -14,23 +14,24 @@ export default function SocialMedia() {
       .then((result) => {
         const { email } = result?.user;
         if (email) {
-          navigate(state);
+          if (result.user) {
+            Swal.fire({
+              title: "Sign In Successfully",
+              icon: "success",
+              showConfirmButton: false,
+            });
+            navigate(state);
+          }
         }
-        // if (result.user) {
-        //   Swal.fire({
-        //     title: "Sign In Successfully",
-        //     icon: "success",
-        //     showConfirmButton: false,
-        //   });
-        //   navigate(state);
-        // }
       })
       .catch((error) => {
-        Swal.fire({
-          title: "Sign In Successfully",
-          icon: "error",
-          showConfirmButton: false,
-        });
+        if (error) {
+          Swal.fire({
+            title: "Sign In Successfully",
+            icon: "error",
+            showConfirmButton: false,
+          });
+        }
       });
   };
 
