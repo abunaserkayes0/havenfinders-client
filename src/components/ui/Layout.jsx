@@ -19,7 +19,7 @@ export default function Layout() {
   }, []);
 
   return (
-    <div className={`mx-5 ${color && "bg-black text-white mx-0"} `}>
+    <div className={`${color && "bg-black text-white"}`}>
       <NavBar />
       {loading ? <Loading /> : <Outlet />}
       <Footer />
