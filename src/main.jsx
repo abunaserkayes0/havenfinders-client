@@ -24,14 +24,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
-        loader: async () => {
-          try {
-            const response = await fetch(`${url}/tourist`);
-            return response;
-          } catch (error) {
-            throw new Response("Error loading tourist spots", { status: 500 });
-          }
-        },
+        loader: () =>
+          fetch(`${url}/tourist`)
+            .then((res) => res.json())
+            .catch((err) => console.error(err)),
       },
       {
         path: "/login",
@@ -56,14 +52,10 @@ const router = createBrowserRouter([
             <AllTouristsSpots />
           </PrivetRoute>
         ),
-        loader: async () => {
-          try {
-            const response = await fetch(`${url}/tourist`);
-            return response;
-          } catch (error) {
-            throw new Response("Error loading tourist spots", { status: 500 });
-          }
-        },
+        loader: () =>
+          fetch(`${url}/tourist`)
+            .then((res) => res.json())
+            .catch((err) => console.error(err)),
       },
       {
         path: "/tourist/:id",
@@ -72,14 +64,10 @@ const router = createBrowserRouter([
             <TouristDetails />
           </PrivetRoute>
         ),
-        loader: async ({ params: { id } }) => {
-          try {
-            const response = await fetch(`${url}/tourist/${id}`);
-            return response;
-          } catch (error) {
-            throw new Response("Error Loading tourist spot", { status: 500 });
-          }
-        },
+        loader: ({ params: { id } }) =>
+          fetch(`${url}/tourist/${id}`)
+            .then((res) => res.json())
+            .catch((err) => console.error(err)),
       },
       {
         path: "/mylist/:email",
@@ -88,14 +76,12 @@ const router = createBrowserRouter([
             <MyList />
           </PrivetRoute>
         ),
-        loader: async ({ params: { email } }) => {
-          try {
-            const response = await fetch(`${url}/users/${email}`);
-            return response;
-          } catch (error) {
-            throw new Response("Error Loading users spot", { status: 500 });
-          }
-        },
+        loader: ({ params: { email } }) =>
+          fetch(
+            `${url}/users/${email}`
+              .then((res) => res.json())
+              .catch((err) => console.error(err))
+          ),
       },
       {
         path: "/update/:id",
@@ -104,14 +90,12 @@ const router = createBrowserRouter([
             <UpdateCard />
           </PrivetRoute>
         ),
-        loader: async ({ params: { id } }) => {
-          try {
-            const response = await fetch(`${url}/tourist/${id}`);
-            return response;
-          } catch (error) {
-            throw new Response("Error Loading users spot", { status: 500 });
-          }
-        },
+        loader: ({ params: { id } }) =>
+          fetch(
+            `${url}/tourist/${id}`
+              .then((res) => res.json())
+              .catch((err) => console.error(err))
+          ),
       },
       {
         path: "*",
