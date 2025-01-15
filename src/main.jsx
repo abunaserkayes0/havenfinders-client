@@ -1,14 +1,15 @@
+import React from "react";
 import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import "./index.css";
+import "./index.css"; // Your global styles
 import Layout from "./components/ui/Layout.jsx";
 import ErrorElement from "./components/ui/ErrorElement.jsx";
 import LogIn from "./components/auth/LogIn.jsx";
 import Register from "./components/auth/Register.jsx";
 import Home from "./Pages/Home.jsx";
 import Add from "./components/tourists/Add.jsx";
-import { url } from "../utils/fetchUrl.js";
+import { url } from "./utils/fetchUrl.js";
 import AllTouristsSpots from "./components/tourists/AllTouristsSpots.jsx";
 import TouristDetails from "./components/tourists/TouristDetails.jsx";
 import AuthProvider from "./components/auth/AuthProvider.jsx";
@@ -21,12 +22,12 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    element: <ErrorElement />,
+    errorElement: <ErrorElement />,
     children: [
       {
-        // index: true,
+        index: true,
         element: <Home />,
-        errorElement:<ErrorElement/>,
+        errorElement: <ErrorElement />,
         loader: () => fetch(`${url}/tourist`),
       },
       {
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
             <AllTouristsSpots />
           </PrivetRoute>
         ),
-        errorElement:<ErrorElement/>,
+        errorElement: <ErrorElement />,
         loader: () => fetch(`${url}/tourist`),
       },
       {
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
             <TouristDetails />
           </PrivetRoute>
         ),
-        errorElement:<ErrorElement/>,
+        errorElement: <ErrorElement />,
         loader: ({ params: { id } }) => fetch(`${url}/tourist/${id}`),
       },
       {
@@ -72,7 +73,7 @@ const router = createBrowserRouter([
             <MyList />
           </PrivetRoute>
         ),
-        errorElement:<ErrorElement/>,
+        errorElement: <ErrorElement />,
         loader: ({ params: { email } }) => fetch(`${url}/users/${email}`),
       },
       {
@@ -82,7 +83,7 @@ const router = createBrowserRouter([
             <UpdateCard />
           </PrivetRoute>
         ),
-        errorElement:<ErrorElement/>,
+        errorElement: <ErrorElement />,
         loader: ({ params: { id } }) => fetch(`${url}/tourist/${id}`),
       },
       {
