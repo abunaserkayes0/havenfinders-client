@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -19,7 +19,7 @@ export default function Resources() {
         </h2>
       </div>
       <Swiper
-        slidesPerView={3}
+        slidesPerView={1}
         spaceBetween={30}
         autoplay={{
           delay: 2000,
@@ -29,6 +29,17 @@ export default function Resources() {
         }}
         modules={[Pagination, Autoplay]}
         className="mySwiper"
+        breakpoints={{
+          320: {
+            slidesPerView: 1,
+          },
+          640: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        }}
       >
         <SwiperSlide>
           <Resource
