@@ -1,8 +1,26 @@
-# React + Vite
+## Getting Started
+First, run the development server:
+# Clone the Repository
+```bash
+https://github.com/abunaserkayes0/havenfinders-client
+```
+## Install Dependencies
+Using npm:
+```bash
+npm install
+```
+Or using yarn:
+```bash
+yarn install
+```
+## Start Development Server
+```bash
+npm run dev
+```
+This will start the development server and open your app at http://localhost:5173.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Build for Production
+```bash
+npm run build
+```
+The build will be output to the dist directory.
